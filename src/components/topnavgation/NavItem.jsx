@@ -8,7 +8,7 @@ const NavItem = ({title,width,height,icon}) => {
         <>
         <div>
         <S.Container width={width} height={height}>
-            <S.Icon src={icon}></S.Icon>
+            {icon && <S.Icon src={icon}></S.Icon> }
             <S.Title>{title}</S.Title>
         </S.Container>
         </div>
@@ -16,4 +16,8 @@ const NavItem = ({title,width,height,icon}) => {
     );
 };
 
+NavItem.defaultProps = {
+    width: 100,
+    height: 50,
+};
 export default NavItem;

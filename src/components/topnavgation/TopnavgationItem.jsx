@@ -14,8 +14,15 @@ const TopnavgationItem = () => {
             <NavItem title="LED" width={95}  icon={Location}></NavItem>
         </S.Container>
         <S.Container>            
+            <NavItem title="출장서비스" width={610}></NavItem>
+        </S.Container>
+        <S.Container>            
             <NavItem title="일구해요?" width={300}></NavItem>
             <NavItem title="사람구해요?" width={300}></NavItem>
+        </S.Container>
+        <S.Container>
+            <div></div>
+            <NavItem title={"더보기"} height={24}></NavItem>
         </S.Container>
         </>
     );

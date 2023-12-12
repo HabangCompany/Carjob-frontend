@@ -1,13 +1,14 @@
 import Header from "./components/header/Header"
 import "./App.css"
-import TopnavgationItem from "./components/topnavgation/TopnavgationItem"
-function App() {
+import Home from "./pages/Home"
 
+
+function App() {
 
   return (
     <>
-        <Header></Header>
-        <TopnavgationItem></TopnavgationItem>
+      <Header></Header>
+      <Home></Home>
     </>
   )
 }
