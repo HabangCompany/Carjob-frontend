@@ -9,7 +9,7 @@ const Header = () => {
     return (
         <S.container>
             <div><S.Icon src={MenuIcon} alt="Menu" /></div>
-            <S.Logo>카잡</S.Logo>
+            <div><S.Logo>카잡</S.Logo></div>
             <div><S.Icon src={SearchIcon}></S.Icon></div>
         </S.container>
     );
