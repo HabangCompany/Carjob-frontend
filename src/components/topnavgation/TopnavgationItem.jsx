@@ -1,9 +1,22 @@
 import React from 'react';
+import * as S from './TopnavgationItem.style'
+import NavItem from './NavItem';
+import Location from '@/assets/navitem/location.svg'
 
 const TopnavgationItem = () => {
     return (
         <>
-            
+        <S.Container>            
+            <NavItem title="지역별" width={95} icon={Location}></NavItem>
+            <NavItem title="랩핑" width={95} icon={Location}></NavItem>
+            <NavItem title="세차" width={95} icon={Location}></NavItem>
+            <NavItem title="썬팅" width={95} icon={Location}></NavItem>
+            <NavItem title="LED" width={95}  icon={Location}></NavItem>
+        </S.Container>
+        <S.Container>            
+            <NavItem title="일구해요?" width={300}></NavItem>
+            <NavItem title="사람구해요?" width={300}></NavItem>
+        </S.Container>
         </>
     );
 };
