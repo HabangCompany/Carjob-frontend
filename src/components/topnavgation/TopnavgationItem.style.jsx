@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-margin-top: 1rem;
+export const Box = styled.div`
+    margin-top: 1rem;
     width: 100%;
     box-sizing: border-box;
     display: flex ;

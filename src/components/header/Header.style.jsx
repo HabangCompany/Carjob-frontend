@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -15,6 +16,6 @@ export const Icon = styled.img`
     width: 30px;
 `
 
-export const Logo = styled.div`
+export const StyledLink = styled(Link)`
     font-weight: 900;
 `

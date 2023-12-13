@@ -1,13 +1,16 @@
 import React from 'react';
 import Header from '../components/header/Header';
+import { Outlet } from 'react-router-dom';
 
 
-const Guin = () => {
+const Root = () => {
+
     return (
         <div>
-            구인페이지
+            <Header />
+            <Outlet />
         </div>
     );
 };
 
-export default Guin;
+export default Root;
