@@ -18,4 +18,7 @@ export const Icon = styled.img`
 
 export const StyledLink = styled(Link)`
     font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
