@@ -1,7 +1,7 @@
 import Root from "../pages/Root";
-import Guin from "../pages/Guin";
+import Jobs from "../pages/Jobs";
 import Home from "../pages/Home";
-
+import FindJobs from "../pages/FindJobs"
 
 
 export const RouterInfo = [
@@ -14,9 +14,14 @@ export const RouterInfo = [
                 element: <Home />
             },
             {
-                path: '/guin',
-                element: <Guin />
+                path: '/jobs',
+                element: <Jobs />
             },
+            {
+                path: '/find-jobs',
+                element: <FindJobs />,
+            },
+
 
         ]
     },

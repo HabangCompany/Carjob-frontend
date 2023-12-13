@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/header/Header';
 
 
-const Guin = () => {
+const Jobs = () => {
     return (
         <div>
             구인페이지
@@ -10,4 +10,4 @@ const Guin = () => {
     );
 };
 
-export default Guin;
+export default Jobs;
