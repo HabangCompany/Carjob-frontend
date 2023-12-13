@@ -17,9 +17,14 @@ export const Container = styled.div`
 `
 export const Icon = styled.img`
     width: 100%;
-
+    @media (max-width: 650px) {
+        width: 80%;
+    }
 `
 
 export const Title = styled.div`
     font-weight: 700;
+    @media (max-width: 650px) {
+        font-size: ${props => props.fontsize};
+    }
 `
