@@ -20,10 +20,10 @@ const TopnavgationItem = () => {
             <NavItem title="일구해요?" width={300}></NavItem>
             <NavItem title="사람구해요?" width={300}></NavItem>
         </S.Container>
-        <S.Container>
+        {/* <S.Container>
             <div></div>
             <NavItem title={"더보기"} height={24}></NavItem>
-        </S.Container>
+        </S.Container> */}
         </>
     );
 };
