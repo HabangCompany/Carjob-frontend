@@ -8,6 +8,10 @@ gap: 10px;
 padding: 0 10px;
 margin-top: 1rem;
 box-sizing: border-box;
+@media (max-width: 650px) {
+    gap: 4px;
+    padding: 0 5px;
+}
 `
 
 export const Box = styled.div`
@@ -17,7 +21,11 @@ export const Box = styled.div`
     display: flex ;
     justify-content: space-between;
     padding: 0 16px;
-    gap: 10px
+    gap: 10px;
+    @media (max-width: 650px) {
+    gap: 4px;
+    padding: 0 5px;
+}
 `
 
 export const Seemore = styled.div`
