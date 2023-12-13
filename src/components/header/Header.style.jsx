@@ -14,9 +14,16 @@ background-color: white;
 `
 export const Icon = styled.img`
     width: 30px;
+    cursor: pointer;
+    &:hover{
+        scale: 1.1;
+        transition: 0.1s;
+    }
 `
 
 export const StyledLink = styled(Link)`
+    color: #000;
+    font-size: 1.3rem;
     font-weight: 900;
     display: flex;
     justify-content: center;
