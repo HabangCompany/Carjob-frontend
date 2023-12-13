@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: ${props => props.width};
     padding:8px 10px;
-    background-color: white;
+    background-color: #fff;
     border-radius: 15px;
     justify-content: space-between;
     gap: 10px;
     box-sizing: border-box;
+    box-shadow: 1px 1px 1px 1px gray;
     &:hover{
         scale: 1.03;
         transition: 0.2s;

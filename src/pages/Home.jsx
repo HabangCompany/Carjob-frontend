@@ -1,12 +1,13 @@
 import React from 'react';
 import TopnavgationItem from '../components/topnavgation/TopnavgationItem';
+import MainHeader from '../components/mainheader/MainHeader';
 
-import Header from '../components/header/Header';
 
 const Home = () => {
     return (
         <>
             <TopnavgationItem></TopnavgationItem>
+            <MainHeader />
         </>
     );
 };
