@@ -1,5 +1,5 @@
 import React from 'react';
-import  * as S from './Header.style'
+import * as S from './Header.style'
 import MenuIcon from '@/assets/header/menu.svg';
 import SearchIcon from '@/assets/header/search.svg';
 

@@ -6,8 +6,8 @@ import { RouterInfo } from "./util/router";
 
 function App() {
 
-  const RouterObject = createBrowserRouter(RouterInfo) 
-  return (  
+  const RouterObject = createBrowserRouter(RouterInfo)
+  return (
     <>
       <Header></Header>
       <RouterProvider router={RouterObject} />
