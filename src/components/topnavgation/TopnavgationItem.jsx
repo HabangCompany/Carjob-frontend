@@ -14,7 +14,7 @@ const TopnavgationItem = () => {
     return (
         <>
             <S.Category>
-                {category.map((item, idx) => <NavItem title={item} width={"100%"} icon={Location} fontsize="0.9rem"></NavItem>)}
+                {category.map((item, idx) => <NavItem key={idx} title={item} width={"100%"} icon={Location} fontsize="0.9rem"></NavItem>)}
             </S.Category >
             <S.Box>
                 <NavItem title="출장서비스" width={"100%"}></NavItem>
