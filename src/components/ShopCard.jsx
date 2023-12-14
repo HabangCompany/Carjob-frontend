@@ -11,6 +11,7 @@ const ShopCard = ({ image, shopname, }) => {
                 <S.Shopname>윤진카센터</S.Shopname>
                 <S.Shopname>별점들</S.Shopname>
                 <S.Shopname>태그들</S.Shopname>
+                <S.Shopname>거리km</S.Shopname>
             </S.Container>
         </>
     );

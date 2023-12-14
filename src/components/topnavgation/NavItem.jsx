@@ -8,7 +8,7 @@ const NavItem = ({ title, width, height, icon, fontsize }) => {
         <>
             <S.Container width={width} height={height}>
                 {icon && <S.Icon src={icon}></S.Icon>}
-                <S.Title fontsize={fontsize}>{title}</S.Title>
+                <S.Title fontSize={fontsize}>{title}</S.Title>
             </S.Container>
         </>
     );

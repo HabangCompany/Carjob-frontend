@@ -11,8 +11,10 @@ export const Title = styled.div`
 export const CardContainer = styled.div`
     display: flex;
     align-items: center;
-    overflow-x: hidden;
+    overflow-x: scroll;
     width: 100%;
     gap: 10px;
-
+    &::-webkit-scrollbar {
+    display: none;
+}
 `
