@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import ShopCard from '../ShopCard';
 import * as S from './MainHeader.style';
+import { Link } from 'react-router-dom';
 
 const MainHeader = () => {
     const [isDrag, setIsDrag] = useState(false);
@@ -27,10 +28,10 @@ const MainHeader = () => {
     };
 
     const clickHandler = (event) => {
-        // 클릭 이벤트를 막음
-        event.preventDefault();
-        // 클릭한 사진에 대한 로직을 추가할 수 있음
-        console.log('사진을 클릭했습니다.');
+        // // 클릭 이벤트를 막음
+        // event.preventDefault();
+        // // 클릭한 사진에 대한 로직을 추가할 수 있음
+        // console.log('사진을 클릭했습니다.');
     };
 
     return (
@@ -45,11 +46,25 @@ const MainHeader = () => {
                 onMouseUp={mouseUpHandler}
                 onMouseLeave={mouseUpHandler}
             >
-                <ShopCard onClick={clickHandler} />
-                <ShopCard onClick={clickHandler} />
-                <ShopCard onClick={clickHandler} />
-                <ShopCard onClick={clickHandler} />
-                <ShopCard onClick={clickHandler} />
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+                <Link to="https://www.naver.com">
+                    <ShopCard onClick={clickHandler} />
+                </Link>
+
             </S.CardContainer>
         </>
     );
