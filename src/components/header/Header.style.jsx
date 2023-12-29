@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const Divflex = styled.div`
+    display: flex;
+    gap: 10px;
+`
 
 export const container = styled.div`
 display: flex;
@@ -27,5 +31,9 @@ export const StyledLink = styled(Link)`
     font-weight: 900;
     display: flex;
     justify-content: center;
+    align-items: center;
+`
+
+export const LoginButton = styled.div`
     align-items: center;
 `

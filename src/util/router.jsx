@@ -3,6 +3,7 @@ import Jobs from "../pages/Jobs";
 import Home from "../pages/Home";
 import FindJobs from "../pages/FindJobs"
 import Signup from "../pages/Signup";
+import Login from "../pages/Login"
 
 
 export const RouterInfo = [

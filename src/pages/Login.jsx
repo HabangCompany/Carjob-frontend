@@ -1,9 +1,14 @@
 import React from 'react';
+import InputLogin from '../components/login/InputLogin';
+import Header from '../components/header/Header';
 
 const Login = () => {
     return (
         <>
-            로그인 페이지입니다.
+            <Header />
+
+            <InputLogin />
+
         </>
     );
 };
