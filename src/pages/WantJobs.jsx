@@ -1,13 +1,14 @@
 import React from 'react';
 import Header from '../components/header/Header';
+import JobsCard from '../components/jobscard/JobsCard';
 
 
-const Jobs = () => {
+const WantJobs = () => {
     return (
         <div>
-            구인페이지
+            <JobsCard />
         </div>
     );
 };
 
-export default Jobs;
+export default WantJobs;
