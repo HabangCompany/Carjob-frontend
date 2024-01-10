@@ -5,7 +5,7 @@ import Location from '@/assets/navitem/location.svg'
 import { Link } from 'react-router-dom'
 const TopnavgationItem = () => {
     const category = [
-        "지역별",
+        "지역",
         "랩핑",
         "세차",
         "썬팅",
