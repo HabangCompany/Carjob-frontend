@@ -18,6 +18,10 @@ export const Image = styled.img`
     height: 200px;
     object-fit: cover;
     cursor: pointer;
+    @media screen and (max-width: 500px) {
+        width: 150px;
+        height: 150px;
+    }
 `
 
 export const Shopname = styled.div`

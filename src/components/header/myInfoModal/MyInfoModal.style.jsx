@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-
 const slideInAnimation = keyframes`
     from {
         width: 0;
@@ -9,6 +8,20 @@ const slideInAnimation = keyframes`
     }
 `;
 
+export const BackGround = styled.div`
+    max-width: 640px;
+    width: 100vw;
+    background-color: #323232e8;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    animation: ${slideInAnimation} 0.1s ease-in-out;
+    padding: 5px 10px;
+`;
+
+
+
+
 export const Container = styled.div`
     max-width: 350px;
     width: 100%;
@@ -16,7 +29,7 @@ export const Container = styled.div`
     height: 100%;
     position: fixed;
     z-index: 2;
-    animation: ${slideInAnimation} 0.3s ease-in-out;
+    animation: ${slideInAnimation} 0.1s ease-in-out;
     padding: 5px 10px;
 `;
 
@@ -44,4 +57,12 @@ export const ProfileImage = styled.img`
 
 export const NickName = styled.div`
     margin-left: 10px;
+`
+
+
+// 카테고리
+export const Category = styled.div`
+    font-weight:bold;
+    margin-top: 10px;
+
 `
