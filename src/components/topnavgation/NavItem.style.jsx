@@ -10,7 +10,7 @@ export const Container = styled.div`
     box-sizing: border-box;
     box-shadow: 1px 1px 1px 1px gray;
     &:hover{
-        scale: 1.03;
+        scale: 1.01;
         transition: 0.2s;
         border: 1px solid gray;
         box-shadow: 2px 2px 2px 1px black;

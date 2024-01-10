@@ -1,5 +1,5 @@
 import Root from "../pages/Root";
-import Jobs from "../pages/Jobs";
+import WantJobs from "../pages/WantJobs";
 import Home from "../pages/Home";
 import FindJobs from "../pages/FindJobs"
 import Signup from "../pages/Signup";
@@ -16,8 +16,8 @@ export const RouterInfo = [
                 element: <Home />
             },
             {
-                path: '/jobs',
-                element: <Jobs />
+                path: '/want-jobs',
+                element: <WantJobs />
             },
             {
                 path: '/find-jobs',

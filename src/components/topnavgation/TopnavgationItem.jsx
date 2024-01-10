@@ -20,7 +20,7 @@ const TopnavgationItem = () => {
                 <NavItem title="출장서비스" width={"100%"}></NavItem>
             </S.Box>
             <S.Box>
-                <S.Linkpage to='/jobs' width='100%'>
+                <S.Linkpage to='/want-jobs' width='100%'>
                     <NavItem title="일구해요?" ></NavItem>
                 </S.Linkpage>
                 <S.Linkpage to='/find-jobs' width='100%'>
