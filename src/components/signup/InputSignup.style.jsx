@@ -42,6 +42,8 @@ box-sizing: border-box;
     width: 100%;
     height: 35px;
     background-color: white;
+    color:black
+
 `
 
 export const CheckButton = styled.button`
@@ -57,7 +59,7 @@ export const SignupButton = styled.button`
 margin-top: 1rem;
     width: 100%;
     background-color: ${color.main};
-    color: #ffffff;
+
 `
 
 export const Wrongtext = styled.div`
