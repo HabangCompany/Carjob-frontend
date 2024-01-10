@@ -10,11 +10,12 @@ const slideInAnimation = keyframes`
 `;
 
 export const Container = styled.div`
-    max-width: 640px;
+    max-width: 350px;
     width: 100vw;
     background-color: #ffffff;
     height: 100%;
     position: fixed;
+    z-index: 2;
     animation: ${slideInAnimation} 0.3s ease-in-out;
     padding: 5px 10px;
 `;
