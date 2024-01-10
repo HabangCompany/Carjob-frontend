@@ -23,6 +23,7 @@ export const InputDiv = styled.div`
     margin-top: 1rem;
     align-items: center;
     box-sizing: border-box;
+    
 `
 
 export const InputBox = styled.div`
@@ -40,11 +41,15 @@ export const Input = styled.input`
 box-sizing: border-box;
     width: 100%;
     height: 35px;
+    background-color: white;
 `
 
 export const CheckButton = styled.button`
-    width: 120px;
+    max-width: 120px;
+    width: auto;
+    white-space: nowrap; 
     margin-left: 5px;
+
 `
 
 export const SignupButton = styled.button`

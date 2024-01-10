@@ -16,6 +16,7 @@ export const InputDiv = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    background-color: white;
 `
 
 export const Label = styled.label`
@@ -31,6 +32,8 @@ export const Input = styled.input`
 export const Button = styled.button`
 margin-top: 1rem;
     width: 100%;
+    background-color: #f9f9f9;
+
 `
 
 export const SignupButton = styled.button`
