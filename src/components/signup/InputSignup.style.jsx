@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { color } from "../../util/globalstyle";
 export const DivFlex = styled.div`
     display: flex;
     align-items: center;
@@ -49,13 +49,14 @@ export const CheckButton = styled.button`
     width: auto;
     white-space: nowrap; 
     margin-left: 5px;
+    background-color: ${color.button};
 
 `
 
 export const SignupButton = styled.button`
 margin-top: 1rem;
     width: 100%;
-    background-color: #9898ff;
+    background-color: ${color.main};
     color: #ffffff;
 `
 
