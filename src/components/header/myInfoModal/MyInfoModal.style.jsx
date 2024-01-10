@@ -11,7 +11,7 @@ const slideInAnimation = keyframes`
 
 export const Container = styled.div`
     max-width: 350px;
-    width: 100vw;
+    width: 100%;
     background-color: #ffffff;
     height: 100%;
     position: fixed;
