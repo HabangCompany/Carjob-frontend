@@ -17,7 +17,7 @@ const TopnavgationItem = () => {
                 {category.map((item, idx) => <NavItem key={idx} title={item} width={"100%"} icon={Location} fontsize="0.9rem"></NavItem>)}
             </S.Category >
             <S.Box>
-                <NavItem title="출장서비스" width={"100%"}></NavItem>
+                <NavItem title="픽업 출장서비스" width={"100%"}></NavItem>
             </S.Box>
             <S.Box>
                 <S.Linkpage to='/want-jobs' width='100%'>
