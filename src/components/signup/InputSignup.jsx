@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import * as S from './InputSignup.style'
 import { Link } from 'react-router-dom';
 import { flushSync } from 'react-dom';
+import axios from 'axios'
+import { signupUrl } from '../../util/urlpath';
 
 const InputSignup = () => {
     const [wrongId, setWrongId] = useState({
@@ -29,6 +31,16 @@ const InputSignup = () => {
             setWrongId(prev => ({ ...prev, "id": false }));
         }
     }
+
+    const testapi = async () => {
+        const response = await axios.post(signupUrl, {
+            data: "프론트엔드회원가입요청"
+        })
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
+    }
+
+
     return (
         <>
             <S.Container>
@@ -79,7 +91,7 @@ const InputSignup = () => {
                         {wrongId['password'] && <S.Wrongtext>번호가 잘못됫어요 !!</S.Wrongtext>}
                     </S.InputBox>
                 </S.InputDiv>
-                <S.SignupButton >회원가입</S.SignupButton>
+                <S.SignupButton onClick={testapi}>회원가입</S.SignupButton>
 
             </S.Container>
         </>
