@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { color } from "../../../util/globalstyle";
 const slideInAnimation = keyframes`
     from {
         width: 0;
@@ -11,7 +12,7 @@ const slideInAnimation = keyframes`
 export const BackGround = styled.div`
     max-width: 640px;
     width: 100vw;
-    background-color: #323232e8;
+    background-color: ${color["modal-background"]};
     height: 100%;
     position: fixed;
     z-index: 1;
