@@ -3,7 +3,7 @@ import * as S from './InputSignup.style'
 import { Link } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 import axios from 'axios'
-import { signupUrl, idCheckUrl } from '../../util/urlpath';
+import { signupUrl, idCheckUrl, nicknameCheckUrl } from '../../util/urlpath';
 import AlertModal from '../common/alertModal/AlertModal';
 
 const InputSignup = () => {
@@ -13,6 +13,9 @@ const InputSignup = () => {
     // 로그인중복시 모달창
     const [isLoginDupulicate, setIsLoginDupulicate] = useState(false)
     const [loginMessage, setLoginMessage] = useState('')
+    // 닉네임중복시 모달창
+    const [isNickNameDupulicate, setIsNickNameDupulicate] = useState(false)
+    const [nickNameMessage, setNickNameMessage] = useState('')
 
 
     const [wrongId, setWrongId] = useState({
@@ -49,13 +52,10 @@ const InputSignup = () => {
         }
     }
 
-    const passwordTest = () => {
-
-    }
 
     const idDuplicateCheck = async () => {
-
-        if (idRef.current.value === '') {
+        let id = idRef.current.value
+        if (id === '') {
             setIsLoginDupulicate(prev => !prev)
             setLoginMessage("아이디를 입력해주세요")
             return
@@ -66,13 +66,37 @@ const InputSignup = () => {
             return
         }
 
-        const response = await axios.get(idCheckUrl, { params: { username: idRef.current.value } })
+        const response = await axios.get(idCheckUrl, { params: { username: id } })
             .then(res => {
                 setIsLoginDupulicate(prev => !prev)
                 setLoginMessage(res.data.message)
             }).catch(error => {
+                console.log(error)
                 setIsLoginDupulicate(prev => !prev)
                 setLoginMessage(error.response.data.message)
+            })
+    }
+    const nickNameDuplicateCheck = async () => {
+        const nickname = nicknameRef.current.value
+        if (nickname === '') {
+            setIsNickNameDupulicate(prev => !prev)
+            setNickNameMessage("닉네임을 입력해주세요")
+            return
+        }
+        if (wrongId['nickname'] === true) {
+            setIsNickNameDupulicate(prev => !prev)
+            setNickNameMessage("닉네임이 잘못되었어요")
+            return
+        }
+
+        const response = await axios.get(nicknameCheckUrl, { params: { nickname: nickname } })
+            .then(res => {
+                setIsNickNameDupulicate(prev => !prev)
+                setNickNameMessage(res.data.message)
+            }).catch(error => {
+                console.log(error)
+                setIsNickNameDupulicate(prev => !prev)
+                setNickNameMessage(error.response.data.message)
             })
     }
 
@@ -114,6 +138,7 @@ const InputSignup = () => {
             <S.Container>
                 {signUpModal && <AlertModal text={signUpMessage} modalHandler={setSignUpModal} />}
                 {isLoginDupulicate && <AlertModal text={loginMessage} modalHandler={setIsLoginDupulicate} />}
+                {isNickNameDupulicate && <AlertModal text={nickNameMessage} modalHandler={setIsNickNameDupulicate} />}
                 <S.InputDiv>
                     <S.Label> <S.Important>*</S.Important> 아이디</S.Label>
                     <S.InputBox >
@@ -129,7 +154,7 @@ const InputSignup = () => {
                     <S.InputBox >
                         <S.DivFlex>
                             <S.Input ref={nicknameRef} type='text' placeholder='닉네임을 입력해주세요' />
-                            <S.CheckButton>중복확인 </S.CheckButton>
+                            <S.CheckButton onClick={nickNameDuplicateCheck}>중복확인 </S.CheckButton>
                         </S.DivFlex>
                         {wrongId['nickname'] && <S.Wrongtext>닉네임이 잘못됫어요 !!</S.Wrongtext>}
                     </S.InputBox >
