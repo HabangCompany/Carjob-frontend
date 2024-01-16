@@ -16,8 +16,13 @@ const InputSignup = () => {
     // 닉네임중복시 모달창
     const [isNickNameDupulicate, setIsNickNameDupulicate] = useState(false)
     const [nickNameMessage, setNickNameMessage] = useState('')
-
-
+    //회원가입유효성
+    const [safetySignup, setSafetySignup] = useState({
+        id: false,
+        nickname: false,
+        password: false,
+    })
+    //잘못된 입력창들
     const [wrongId, setWrongId] = useState({
         "id": false,
         "nickname": false,
@@ -31,22 +36,18 @@ const InputSignup = () => {
     const addressRef = useRef('')
     const phonenumberRef = useRef('')
     const passwordRef = useRef('')
-    const passwor2dRef = useRef('')
+    const password2dRef = useRef('')
 
 
     const idTest = (e) => {
         const inputText = e.target.value;
-        const englishOnlyRegex = /^[a-zA-Z]+$/;
+        const englishOnlyRegex = /^[a-zA-Z0-9]+$/;
         const specialCharacterRegex = /[~!@#\$%\^&\*\(\)_\+\-=₩\\[\];'\/\?:"]/;
-        if (inputText.length === 0) {
-            setWrongId(prev => ({ ...prev, "id": false }));
-            return
-        }
-        if (inputText.length < 4 || inputText.length >= 11 || specialCharacterRegex.test(inputText) || !englishOnlyRegex.test(inputText)) {
+        const koreanRegex = /[ㄱ-힣]/;
+
+        if (inputText.length < 4 || inputText.length >= 11 || specialCharacterRegex.test(inputText) || !englishOnlyRegex.test(inputText) || koreanRegex.test(inputText)) {
             setWrongId(prev => ({ ...prev, "id": true }));
-            setTimeout(() => {
-                setWrongId((prev) => ({ ...prev, id: false }));
-            }, 2000);
+            setSafetySignup(prev => ({ ...prev, id: false }))
         } else {
             setWrongId(prev => ({ ...prev, "id": false }));
         }
@@ -57,11 +58,13 @@ const InputSignup = () => {
         let id = idRef.current.value
         if (id === '') {
             setIsLoginDupulicate(prev => !prev)
+            setSafetySignup(prev => ({ ...prev, id: false }))
             setLoginMessage("아이디를 입력해주세요")
             return
         }
         if (wrongId['id'] === true) {
             setIsLoginDupulicate(prev => !prev)
+            setSafetySignup(prev => ({ ...prev, id: false }))
             setLoginMessage("아이디가 잘못되었어요")
             return
         }
@@ -69,6 +72,7 @@ const InputSignup = () => {
         const response = await axios.get(idCheckUrl, { params: { username: id } })
             .then(res => {
                 setIsLoginDupulicate(prev => !prev)
+                setSafetySignup(prev => ({ ...prev, id: true }))
                 setLoginMessage(res.data.message)
             }).catch(error => {
                 console.log(error)
@@ -92,6 +96,7 @@ const InputSignup = () => {
         const response = await axios.get(nicknameCheckUrl, { params: { nickname: nickname } })
             .then(res => {
                 setIsNickNameDupulicate(prev => !prev)
+                setSafetySignup(prev => ({ ...prev, nickname: true }))
                 setNickNameMessage(res.data.message)
             }).catch(error => {
                 console.log(error)
@@ -100,7 +105,27 @@ const InputSignup = () => {
             })
     }
 
+    const passwordCheck = () => {
+        const pw1 = passwordRef.current.value
+        const pw2 = password2dRef.current.value
+        if (pw1 === pw2) {
+            setWrongId(prev => ({ ...prev, password: false }))
+            setSafetySignup(prev => ({ ...prev, password: true }))
+        }
+        if (pw1 === '' || pw2 === '') {
+            setWrongId(prev => ({ ...prev, password: true }))
+            return false
+        }
+
+    }
     const testapi = async () => {
+        if (passwordCheck() === false) {
+            return
+        }
+        if (safetySignup['id'] === false || safetySignup['nickname'] === false || safetySignup['password'] === false) {
+            console.log("회원가입불가")
+            return
+        }
         const username = idRef.current.value
         const nickname = nicknameRef.current.value
         const address = addressRef.current.value
@@ -132,7 +157,7 @@ const InputSignup = () => {
             })
     }
 
-
+    console.log(safetySignup)
     return (
         <>
             <S.Container>
@@ -175,15 +200,15 @@ const InputSignup = () => {
                 <S.InputDiv>
                     <S.Label><S.Important>*</S.Important>비빌번호</S.Label>
                     <S.InputBox>
-                        <S.Input ref={passwordRef} type='password' placeholder='6자이상 특수 문자포함' />
-                        {wrongId['password'] && <S.Wrongtext>번호가 잘못됫어요 !!</S.Wrongtext>}
+                        <S.Input ref={passwordRef} type='password' placeholder='비밀번호를 입력해주세요' />
+                        {wrongId['password'] && <S.Wrongtext>비밀번호가 잘못됫어요 !!</S.Wrongtext>}
                     </S.InputBox>
                 </S.InputDiv>
                 <S.InputDiv>
                     <S.Label><S.Important>*</S.Important>비빌번호 확인</S.Label>
                     <S.InputBox>
-                        <S.Input ref={passwor2dRef} type='password' placeholder='6자이상 특수 문자포함' />
-                        {wrongId['password'] && <S.Wrongtext>번호가 잘못됫어요 !!</S.Wrongtext>}
+                        <S.Input ref={password2dRef} type='password' placeholder='비밀번호를 다시 입력해주세요' />
+                        {wrongId['password'] && <S.Wrongtext>비밀번호가 잘못됫어요 !!</S.Wrongtext>}
                     </S.InputBox>
                 </S.InputDiv>
                 <S.SignupButton onClick={testapi}>회원가입</S.SignupButton>
