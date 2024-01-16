@@ -1,12 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './InputSignup.style'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 import axios from 'axios'
 import { signupUrl, idCheckUrl, nicknameCheckUrl } from '../../util/urlpath';
 import AlertModal from '../common/alertModal/AlertModal';
 
 const InputSignup = () => {
+    //네비게이터
+    const navigate = useNavigate();
     //회원가입실패시 모달창
     const [signUpModal, setSignUpModal] = useState(false)
     const [signUpMessage, setSignUpMessage] = useState('')
@@ -37,6 +39,7 @@ const InputSignup = () => {
     const phonenumberRef = useRef('')
     const passwordRef = useRef('')
     const password2dRef = useRef('')
+    //패스워드 검증후 실행
 
 
     const idTest = (e) => {
@@ -101,27 +104,32 @@ const InputSignup = () => {
             }).catch(error => {
                 console.log(error)
                 setIsNickNameDupulicate(prev => !prev)
+                setSafetySignup(prev => ({ ...prev, nickname: false }))
                 setNickNameMessage(error.response.data.message)
             })
     }
 
     const passwordCheck = () => {
-        const pw1 = passwordRef.current.value
-        const pw2 = password2dRef.current.value
+        let pw1 = passwordRef.current.value
+        let pw2 = password2dRef.current.value
+        console.log(pw1, pw2)
         if (pw1 === pw2) {
             setWrongId(prev => ({ ...prev, password: false }))
             setSafetySignup(prev => ({ ...prev, password: true }))
         }
-        if (pw1 === '' || pw2 === '') {
+        else if (pw1 === '' || pw2 === '') {
             setWrongId(prev => ({ ...prev, password: true }))
-            return false
+            setSafetySignup(prev => ({ ...prev, password: false }))
         }
-
+        else {
+            setWrongId(prev => ({ ...prev, password: true }))
+            setSafetySignup(prev => ({ ...prev, password: false }))
+        }
     }
-    const testapi = async () => {
-        if (passwordCheck() === false) {
-            return
-        }
+
+
+    const signUpApi = async () => {
+        passwordCheck()
         if (safetySignup['id'] === false || safetySignup['nickname'] === false || safetySignup['password'] === false) {
             console.log("회원가입불가")
             return
@@ -149,13 +157,22 @@ const InputSignup = () => {
             .then(res => {
                 console.log(res)
                 setSignUpModal(prev => !prev)
+                setSafetySignup(prev => ({
+                    ...prev,
+                    id: false,
+                    nickname: false,
+                    password: false,
+                }))
                 setSignUpMessage("회원가입이 성공적으로 되었습니다")
+
+
             })
             .catch(error => {
                 setSignUpModal(prev => !prev)
                 setSignUpMessage("회원가입 양식을 맞춰주세요")
             })
     }
+
 
     console.log(safetySignup)
     return (
@@ -168,7 +185,7 @@ const InputSignup = () => {
                     <S.Label> <S.Important>*</S.Important> 아이디</S.Label>
                     <S.InputBox >
                         <S.DivFlex>
-                            <S.Input ref={idRef} onChange={idTest} type='text' placeholder='4자이상 10자이하 영어아이디' />
+                            <S.Input ref={idRef} onChange={idTest} type='text' placeholder='4자이상 10자이하 영문+숫자아이디' />
                             <S.CheckButton onClick={idDuplicateCheck}>중복확인</S.CheckButton>
                         </S.DivFlex>
                         {wrongId['id'] && <S.Wrongtext>아이디가 잘못됫어요 !!</S.Wrongtext>}
@@ -200,18 +217,17 @@ const InputSignup = () => {
                 <S.InputDiv>
                     <S.Label><S.Important>*</S.Important>비빌번호</S.Label>
                     <S.InputBox>
-                        <S.Input ref={passwordRef} type='password' placeholder='비밀번호를 입력해주세요' />
-                        {wrongId['password'] && <S.Wrongtext>비밀번호가 잘못됫어요 !!</S.Wrongtext>}
+                        <S.Input onChange={passwordCheck} ref={passwordRef} type='password' placeholder='비밀번호를 입력해주세요' />
+                        {wrongId['password'] && <S.Wrongtext>비밀번호가 같지않아요 !!</S.Wrongtext>}
                     </S.InputBox>
                 </S.InputDiv>
                 <S.InputDiv>
                     <S.Label><S.Important>*</S.Important>비빌번호 확인</S.Label>
                     <S.InputBox>
-                        <S.Input ref={password2dRef} type='password' placeholder='비밀번호를 다시 입력해주세요' />
-                        {wrongId['password'] && <S.Wrongtext>비밀번호가 잘못됫어요 !!</S.Wrongtext>}
+                        <S.Input onChange={passwordCheck} ref={password2dRef} type='password' placeholder='비밀번호를 다시 입력해주세요' />
                     </S.InputBox>
                 </S.InputDiv>
-                <S.SignupButton onClick={testapi}>회원가입</S.SignupButton>
+                <S.SignupButton onClick={signUpApi}>회원가입</S.SignupButton>
 
             </S.Container>
         </>
