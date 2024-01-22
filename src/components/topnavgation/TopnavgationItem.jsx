@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './TopnavgationItem.style'
 import NavItem from './NavItem';
 import Location from '@/assets/navitem/location.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const TopnavgationItem = () => {
     const category = [
         "지역",
@@ -11,12 +11,18 @@ const TopnavgationItem = () => {
         "썬팅",
         "LED"
     ]
+    const navigate = useNavigate()
+
+    const goToCarService = () => {
+        navigate('/car-service')
+    }
+
     return (
         <>
             <S.Category>
                 {category.map((item, idx) => <NavItem key={idx} title={item} width={"100%"} icon={Location} fontsize="0.9rem"></NavItem>)}
             </S.Category >
-            <S.Box>
+            <S.Box onClick={goToCarService}>
                 <NavItem title="픽업 출장서비스" width={"100%"}></NavItem>
             </S.Box>
             <S.Box>

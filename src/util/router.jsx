@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import FindJobs from "../pages/FindJobs"
 import Signup from "../pages/Signup";
 import Login from "../pages/Login"
+import CarService from "../pages/CarService";
 
 
 export const RouterInfo = [
@@ -23,6 +24,10 @@ export const RouterInfo = [
                 path: '/find-jobs',
                 element: <FindJobs />,
             },
+            {
+                path: '/car-service',
+                element: <CarService />
+            }
         ]
     },
     {
