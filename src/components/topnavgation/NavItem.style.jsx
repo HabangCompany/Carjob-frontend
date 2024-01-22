@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: ${props => props.width};
+    margin-top: 8px;
     padding:8px 10px;
     background-color: #fff;
     border-radius: 15px;

@@ -16,7 +16,7 @@ const NavItem = ({ title, width, height, icon, fontsize }) => {
 
 NavItem.defaultProps = {
     fontsize: "1rem",
-    width: 100,
-    height: 50,
+    width: "100%",
+    height: "50px",
 };
 export default NavItem;
