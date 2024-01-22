@@ -15,6 +15,7 @@ box-sizing: border-box;
 `
 
 export const Box = styled.div`
+cursor: pointer;
     margin-top: 1rem;
     width: 100%;
     box-sizing: border-box;

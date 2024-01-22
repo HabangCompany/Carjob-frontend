@@ -10,13 +10,17 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+
+import { CookiesProvider } from "react-cookie";
 function App() {
 
   const RouterObject = createBrowserRouter(RouterInfo)
   return (
     <>
       <RecoilRoot>
-        <RouterProvider router={RouterObject} />
+        <CookiesProvider>
+          <RouterProvider router={RouterObject} />
+        </CookiesProvider>
       </RecoilRoot>
     </>
   )
