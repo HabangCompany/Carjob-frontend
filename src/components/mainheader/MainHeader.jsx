@@ -37,7 +37,7 @@ const MainHeader = () => {
     return (
         <>
             <S.Title>
-                내 지역 <span style={{ color: '#747bff' }}>추천 업체들</span>
+                내 주변 <span style={{ color: '#747bff' }}>추천 업체들</span>
             </S.Title>
             <S.CardContainer
                 ref={scrollRef}

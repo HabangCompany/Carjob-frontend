@@ -19,11 +19,11 @@ const TopnavgationItem = () => {
 
     return (
         <>
-            <S.Category>
-                {category.map((item, idx) => <NavItem key={idx} title={item} width={"100%"} icon={Location} fontsize="0.9rem"></NavItem>)}
-            </S.Category >
+            {/* <S.Category>
+                {category.map((item, idx) => <NavItem key={idx} title={item} width={"100%"} height={"150px"} icon={Location} fontsize="0.9rem"></NavItem>)}
+            </S.Category > */}
             <S.Box onClick={goToCarService}>
-                <NavItem title="픽업 출장서비스" width={"100%"}></NavItem>
+                <NavItem title="자동차 서비스 둘러보기" width={"100%"} height={"100px"} fontsize={"3rem"}></NavItem>
             </S.Box>
             <S.Box>
                 <S.Linkpage to='/want-jobs' width='100%'>
@@ -33,10 +33,6 @@ const TopnavgationItem = () => {
                     <NavItem title="사람구해요?" ></NavItem>
                 </S.Linkpage>
             </S.Box>
-            {/* <S.Container>
-            <div></div>
-            <NavItem title={"더보기"} height={24}></NavItem>
-        </S.Container> */}
         </>
     );
 };

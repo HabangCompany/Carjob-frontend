@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    cursor: pointer;
     width: ${props => props.width};
+    height: ${props => props.height};   
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 8px;
     padding:8px 10px;
     background-color: #fff;
     border-radius: 15px;
-    justify-content: space-between;
     gap: 10px;
     box-sizing: border-box;
     box-shadow: 1px 1px 1px 1px gray;
     &:hover{
         scale: 1.01;
-        transition: 0.2s;
+        transition: 0.1s;
         border: 1px solid gray;
-        box-shadow: 2px 2px 2px 1px black;
+
     }
 `
 export const Icon = styled.img`
