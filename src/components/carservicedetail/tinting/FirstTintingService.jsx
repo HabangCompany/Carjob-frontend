@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import NextButton from '../../common/car_service_option_button/NextButton'
+
+/** 시공부위를 선택하는 컴포넌트 */
 const TintingService = () => {
     return (
         <Container>

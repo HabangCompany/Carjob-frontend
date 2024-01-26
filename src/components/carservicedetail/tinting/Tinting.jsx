@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import FirstTintingService from './FirstTintingService'
 import SecoundTintingService from './SecoundTintingService';
+import ThirdTintingService from './ThirdTintingService';
 
 
 /** 
@@ -20,6 +21,7 @@ const Tinting = () => {
         <div>
             <FirstTintingService />
             <SecoundTintingService />
+            <ThirdTintingService />
         </div>
     );
 };
