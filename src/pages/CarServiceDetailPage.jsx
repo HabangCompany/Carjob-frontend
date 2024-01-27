@@ -45,7 +45,6 @@ const CarServiceDetailPage = () => {
     }
     return (
         <div>
-            {servicename}
             {chaneComponent}
         </div>
     );

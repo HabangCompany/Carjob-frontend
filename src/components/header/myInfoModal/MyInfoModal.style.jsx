@@ -12,7 +12,7 @@ const slideInAnimation = keyframes`
 export const BackGround = styled.div`
     max-width: 640px;
     width: 100vw;
-    background-color: ${color["modal-background"]};
+    background-color: ${color.modalBackground};
     height: 100%;
     position: fixed;
     z-index: 1;

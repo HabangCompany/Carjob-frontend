@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { color } from "../../util/globalstyle"
 
 export const Container = styled.div`
     margin: auto;
@@ -32,13 +32,15 @@ export const Input = styled.input`
 export const Button = styled.button`
 margin-top: 1rem;
     width: 100%;
-    background-color: #f9f9f9;
+    background-color: ${color.button1};
+    color:  ${color.button1Text};
 
 `
 
 export const SignupButton = styled.button`
     margin-top: 1rem;
     width: 100%;
-    background-color: #9898ff;
-    color: #ffffff;
+    background-color: ${color.button2};
+    color: ${color.button2Text};
+
 `

@@ -14,7 +14,7 @@ import ThirdTintingService from './ThirdTintingService';
 
 
 const Tinting = () => {
-    const [first, setFirst] = useState()
+    const [first, setFirst] = useState([])
 
 
     return (

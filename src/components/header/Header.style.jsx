@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { color } from "../../util/globalstyle"
 export const Divflex = styled.div`
     display: flex;
     gap: 10px;
@@ -26,7 +26,7 @@ export const Icon = styled.img`
 `
 
 export const StyledLink = styled(Link)`
-    color: #000;
+    color: ${color.main};
     font-size: 1.3rem;
     font-weight: 900;
     display: flex;
@@ -35,5 +35,6 @@ export const StyledLink = styled(Link)`
 `
 
 export const LoginButton = styled.div`
+cursor: pointer;
     align-items: center;
 `

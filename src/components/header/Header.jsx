@@ -34,7 +34,7 @@ const Header = () => {
                 <S.Icon src={SearchIcon}></S.Icon>
                 {loginState ?
                     <S.LoginButton onClick={logOut}>
-                        <div >로그아웃 </div>
+                        로그아웃
                     </S.LoginButton>
                     :
                     <S.LoginButton>

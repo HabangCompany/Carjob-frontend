@@ -42,23 +42,27 @@ box-sizing: border-box;
     width: 100%;
     height: 35px;
     background-color: white;
-    color:black
+    border-radius: 10px;
+    text-indent: 10px;
+    color:black;
 
 `
 
 export const CheckButton = styled.button`
+color: ${color.buttonText};
     max-width: 120px;
     width: auto;
     white-space: nowrap; 
     margin-left: 5px;
-    background-color: ${color.button};
+    background-color: ${color.button1};
 
 `
 
 export const SignupButton = styled.button`
+color: ${color.buttonText};
 margin-top: 1rem;
     width: 100%;
-    background-color: ${color.main};
+    background-color: ${color.button1};
 
 `
 
