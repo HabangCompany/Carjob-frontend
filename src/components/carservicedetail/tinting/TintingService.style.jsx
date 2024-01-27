@@ -8,6 +8,7 @@ max-width: 500px;
     box-sizing: border-box;
     margin: auto;
     margin-top: 50px;
+    padding: 0 10px;
 `
 
 export const Title = styled.div`
@@ -37,9 +38,21 @@ background-color: "#fff";
 //두번째 차종입력부분
 
 export const InputCarname = styled.input`
+box-sizing: border-box;
     width: 100%;
-    height: 40px;
+    height: 50px;
     font-size: 1.5rem;
+`
+export const TextArea = styled.textarea`
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 70px;
+`
+export const WarningText = styled.div`
+box-sizing: border-box;
+margin-top: 1rem;
+    text-align: left;
 `
 
 
@@ -49,4 +62,12 @@ export const Button = styled.button`
     margin-top: 30px;
     color: white;
     background-color: ${props => props.color};
+`
+
+
+
+/// 글씨폰트들
+
+export const ColorRed = styled.span`
+    color:#ff6f61
 `
