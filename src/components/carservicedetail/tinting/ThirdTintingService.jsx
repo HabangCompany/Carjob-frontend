@@ -10,6 +10,7 @@ const ThirdTintingService = () => {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedDetaildRegion, setSelectedDetailRegion] = useState('');
     const regions = ['서울', '인천', '경기'];
+    const [finalRegion, setFinalRegion] = useState([])
     useEffect(() => {
         if (finalRegion.length === 2) {
             setButtonColor("#7a7aff")
@@ -21,6 +22,7 @@ const ThirdTintingService = () => {
     const seoul = [
         '종로구',
         '중구',
+        '용산구',
         '성동구',
         '광진구',
         '동대문구',
