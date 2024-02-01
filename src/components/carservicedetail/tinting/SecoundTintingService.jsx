@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './TintingService.style'
 /** 차종을 입력하는 컴포넌트 */
-const SecoundTintingService = () => {
+const SecoundTintingService = ({ nextstep }) => {
     const [optionSelectState, setOptionSelectState] = useState([])
     const [buttonColor, setButtonColor] = useState('#ccc')
     const [carName, setCarName] = useState('')
@@ -24,7 +24,8 @@ const SecoundTintingService = () => {
 
     const nextOtionHandler = () => {
         if (carName) {
-
+            nextstep(3)
+            console.log(carName)
         } else {
             console.log("차종을 입력해주세요")
         }
@@ -49,7 +50,7 @@ const SecoundTintingService = () => {
                 </div>
 
                 <label htmlFor="carname"></label>
-                <S.Button color={buttonColor} onClick={nextOtionHandler}>다음</S.Button>
+                <S.Button propsColor={buttonColor} onClick={nextOtionHandler}>다음</S.Button>
             </S.OptionContainer >
         </>
     );

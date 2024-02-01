@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login"
 import CarServicePage from "../pages/CarServicePage";
 import CarServiceDetailPage from "../pages/CarServiceDetailPage";
+import StoreRegisterPage from "../pages/StoreRegisterPage";
 
 
 export const RouterInfo = [
@@ -34,6 +35,10 @@ export const RouterInfo = [
                 element: <CarServiceDetailPage />
             }
         ]
+    },
+    {
+        path: '/store-register',
+        element: <StoreRegisterPage />
     },
     {
         path: '/signup',

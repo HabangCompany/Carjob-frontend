@@ -8,7 +8,7 @@ import profilImage from '@/assets/logo.jpg'
 
 const category = [
     "구인 글쓰기",
-    "구직 글쓰기"
+    "구직 글쓰기",
 
 ]
 const MyInfoModal = () => {

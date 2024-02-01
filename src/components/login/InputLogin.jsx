@@ -31,8 +31,6 @@ const InputLogin = () => {
                     navigator('/')
                 }
                 )
-
-
         } catch (error) {
             if (error.response.status === 400) {
                 console.log("아이디비번을 확인해주세요")

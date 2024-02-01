@@ -14,14 +14,16 @@ import ThirdTintingService from './ThirdTintingService';
 
 
 const Tinting = () => {
-    const [first, setFirst] = useState([])
+    const [step, setStep] = useState(1)
 
 
     return (
         <div>
-            <FirstTintingService />
-            <SecoundTintingService />
-            <ThirdTintingService />
+            {step == 1 ? <FirstTintingService nextstep={setStep} /> : null}
+            {step == 2 ? <SecoundTintingService nextstep={setStep} /> : null}
+            {step == 3 ? <ThirdTintingService /> : null}
+
+
         </div>
     );
 };
