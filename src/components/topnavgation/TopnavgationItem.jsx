@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './TopnavgationItem.style'
 import NavItem from './NavItem';
-import Location from '@/assets/navitem/location.svg'
+// import Location from 'assets/navitem/location.svg'
 import { Link, useNavigate } from 'react-router-dom'
 const TopnavgationItem = () => {
     const category = [

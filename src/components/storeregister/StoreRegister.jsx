@@ -1,60 +1,88 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import ImageUpload from './imageUpload/ImageUpload';
+import DaumPostCode from './daumpostcode/DaumPostCode';
+import SkillTag from './skilltag/SkillTag';
+import * as S from './StoreRegister.style'
+import { useNavigate } from 'react-router-dom';
 
 const StoreRegister = () => {
+    const [isZipCode, setIsZipCode] = useState(false)
+    const [storeInfo, setStoreInfo] = useState({
+        storeName: "",
+        storenTel: "",
+        storeDescription: "",
+        storeImage: [],
+        storeAddress: "",
+        storeSkill: "",
+    })
+    const navigate = useNavigate()
 
-    const [selectedImages, setSelectedImages] = useState([]);
+    //업체가입정보들
+    const storeName = useRef()
+    const storenTel = useRef()
+    const storeDescription = useRef()
 
-    const handleFileChange = (e) => {
-        if (!selectedImages.length === 0) {
-            setSelectedImages([])
-        }
 
-        setSelectedImages([])
-        const files = e.target.files;
-        // 이미지 파일만 필터링
-        const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
 
-        // 최대 10장까지만 선택하도록 제한
-        if (imageFiles.length + selectedImages.length > 10) {
-            console.log('최대 10장까지만 선택할 수 있습니다.');
-            return;
-        }
+    const goToHome = () => {
+        navigate('/')
+    }
 
-        // 선택한 이미지들을 상태에 추가
-        setSelectedImages(prevImages => [...prevImages, ...imageFiles]);
-    };
-    console.log(selectedImages)
+    //주소찾기 버튼
+    const addressFinder = () => {
+        setIsZipCode(prev => !prev)
+    }
+
+    console.log(storeInfo)
     return (
-        <div>
+        <S.Container>
             <h2>환영 합니다 업주 여러분</h2>
-            <div>
-                <div>업체명</div>
-                <input type="text" />
-            </div>
-            <div>
-                <div>업체설명</div>
-                <textarea rows={10} ></textarea>
-            </div>
+            <h3>카잡에 등록하여 많은 혜택을 누려보세요</h3>
+            <S.Field>
+                <S.Title>업체 명</S.Title>
+                <S.Input type="text" placeholder='사업자 이름' autoFocus ref={storeName} />
+            </S.Field>
+            <S.Field>
+                <S.Title>업체 연락처</S.Title>
+                <S.Input type="tel" placeholder='연락처를 입력해주세요' ref={storenTel} />
+            </S.Field>
 
-            <div>
-                <div>업체사진</div>
-                <input type="file" accept="image/*" multiple onChange={handleFileChange} />
-                {/* 선택한 이미지들을 나타내는 예시 */}
+            <S.Field>
+                <S.Title>업체 설명</S.Title>
+                <S.Input placeholder="업체를 설명해주세요" ref={storeDescription} />
+            </S.Field>
+            <S.Field>
+                <S.Title>업체 사진</S.Title>
+                <ImageUpload setStoreInfo={setStoreInfo} />
+            </S.Field>
+
+            <S.Field>
+                <S.Title>업체 주소</S.Title>
+                <S.Input type="text" placeholder='우편번호' />
+                <button onClick={addressFinder}>주소찾기</button>
+                {isZipCode && <DaumPostCode />}
                 <div>
-                    {selectedImages.map((image, index) => (
-                        <img key={index} src={URL.createObjectURL(image)} alt={`업체사진 ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }} />
-                    ))}
+                    <div>
+                        <S.Input type="text" placeholder='주소' />
+                    </div>
+                    <div>
+                        <S.Input type="text" placeholder='상세주소' />
+                    </div>
                 </div>
-            </div>
+            </S.Field>
+
+            <S.Field>
+                <div></div>
+                <SkillTag />
+            </S.Field>
 
 
-            <div>
-                주소
-                <input type="text" pla />
+            <S.Field>
+                <button type='submit'>업체로 등록하기</button>
 
-            </div>
-
-        </div >
+            </S.Field>
+            <button onClick={goToHome}>돌아가기</button>
+        </S.Container >
     );
 };
 
