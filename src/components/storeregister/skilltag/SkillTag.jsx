@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './SkillTag.style'
 import { carService } from '../../../util/carservice';
 
-const SkillTag = () => {
+const SkillTag = ({ storeSkillHandler }) => {
     const [selectedSkillList, setSelectedSkillList] = useState([])
 
+    useEffect(() => {
+        storeSkillHandler(selectedSkillList)
+    }, [selectedSkillList])
     const seletedSkillHandler = (skill) => {
         const isSkillSelected = selectedSkillList.includes(skill)
         console.log(isSkillSelected)
@@ -16,7 +19,7 @@ const SkillTag = () => {
             setSelectedSkillList((prevSkill) => [...prevSkill, skill])
         }
     }
-    console.log(selectedSkillList)
+
     return (
         <div>
             <div>제공 서비스</div>

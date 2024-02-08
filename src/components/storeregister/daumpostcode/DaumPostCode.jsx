@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 
-const DaumPostCode = () => {
+const DaumPostCode = ({ storeAddressHandler }) => {
     const [address, setAddress] = useState('')
     const [zoneCode, setZoneCode] = useState('')
 
@@ -11,13 +11,14 @@ const DaumPostCode = () => {
         console.log(data)
         setAddress(data.address)
         setZoneCode(data.zonecode)
+        storeAddressHandler(data.address, data.jibunAddress, data.zonecode)
     }
+    //지도정보 인풋창에 넣기
 
-    console.log(address)
-    console.log(zoneCode)
+
     return (
         <div>
-            <DaumPostcode onComplete={completeHandler} />
+            <DaumPostcode onComplete={completeHandler} onClose={() => { console.log("주소끔") }} />
         </div>
     );
 };
