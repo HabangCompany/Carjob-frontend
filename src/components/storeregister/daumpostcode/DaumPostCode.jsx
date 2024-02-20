@@ -8,7 +8,6 @@ const DaumPostCode = ({ storeAddressHandler }) => {
 
     //지도정보 받아오기
     const completeHandler = (data) => {
-        console.log(data)
         setAddress(data.address)
         setZoneCode(data.zonecode)
         storeAddressHandler(data.address, data.jibunAddress, data.zonecode)

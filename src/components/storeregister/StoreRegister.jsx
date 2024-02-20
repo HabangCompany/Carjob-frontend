@@ -8,48 +8,31 @@ import axios from 'axios';
 
 const StoreRegister = () => {
     const [isZipCode, setIsZipCode] = useState(false)
-    const [storeInfo, setStoreInfo] = useState({
-        storeName: "",
-        storeTel: "",
-        storeDescription: "",
-        storeImage: [],
-        address: "",
-        jibunAddress: "",
-        zonecode: "",
-        detailAddress: "",
-        storeSkill: [],
-    })
+    const [addressInfo, setAddressInfo] = useState({})
+    const [storeThumbnailImage, setStoreThumbnailImage] = useState([])
+    const [storeImage, setStoreImage] = useState([])
+    const [skillList, setSkillList] = useState([])
     const navigate = useNavigate()
 
     //업체가입정보들
-    const storeName = useRef()
-    const storeTel = useRef()
-    const storeDescription = useRef()
-    const storeDetailAddress = useRef()
+    const storeName = useRef('')
+    const storeTel = useRef('')
+    const storeDescription = useRef('')
+    const storeZoneCode = useRef('')
+    const storeAddress = useRef('')
+    const storeDetailAddress = useRef('')
 
-    //업체 명, 연락처, 상세주소
-    const storeInfoUpdate = () => {
-        setStoreInfo((prev) => ({
-            ...prev,
-            storeDescription: storeDescription.current.value,
-            storeName: storeName.current.value,
-            storeTel: storeTel.current.value,
-            detailAddress: storeDetailAddress.current.value
-        }))
+    // 업체 썸네일 업로드
+    const storeThumbnailImageHandler = (image) => {
+        setStoreThumbnailImage(image)
     }
     //업체 사진업로드
     const storeimageHandler = (imagelist) => {
-        setStoreInfo(prev => ({
-            ...prev,
-            storeImage: imagelist
-        }))
+        setStoreImage(imagelist)
     }
     //업체 스킬 업로드
     const storeSkillHandler = (skillList) => {
-        setStoreInfo(prev => ({
-            ...prev,
-            storeSkill: skillList
-        }))
+        setSkillList(skillList)
     }
     //집보내기
     const goToHome = () => {
@@ -63,7 +46,7 @@ const StoreRegister = () => {
 
     //업체 주소 업로드
     const storeAddressHandler = (address, jibunAddress, zonecode,) => {
-        setStoreInfo(prev => ({
+        setAddressInfo(prev => ({
             ...prev,
             address,
             jibunAddress,
@@ -73,63 +56,87 @@ const StoreRegister = () => {
     }
 
     const submitHandler = async () => {
+        const storeInfo = JSON.stringify(
+            {
+                storeName: storeName.current.value,
+                storeTel: storeTel.current.value,
+                storeDescription: storeDescription.current.value,
+                address: storeAddress.current.value,
+                zonecode: storeZoneCode.current.value,
+                detailAddress: storeDetailAddress.current.value,
+                storeSkill: skillList,
+            }
+        )
+
+        const formdata = new FormData()
+        formdata.append("data", storeInfo)
+        storeImage.forEach((image, index) => {
+            formdata.append("storeImage", image, `storeImage-${index}.jpg`)
+        })
+        console.log(Array.from(formdata.entries()));
         const url = 'http://localhost:8000/account/store_register/'
-        await axios.post(url, storeInfo)
+        await axios.post(url, formdata, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(res => console.log(res))
             .catch(error => console.log(error))
-
     }
-    console.log(storeInfo)
+
     return (
-        <S.Container>
-            <h2>환영 합니다 업주 여러분</h2>
-            <h3>카잡에 등록하여 많은 혜택을 누려보세요</h3>
-            <S.Field>
-                <S.Title>업체 명</S.Title>
-                <S.Input type="text" placeholder='사업자 이름' autoFocus ref={storeName} onChange={storeInfoUpdate} />
-            </S.Field>
-            <S.Field>
-                <S.Title>업체 연락처</S.Title>
-                <S.Input type="tel" placeholder='연락처를 입력해주세요' ref={storeTel} onChange={storeInfoUpdate} />
-            </S.Field>
+        <>
+            <S.Container>
+                <h2>환영 합니다 업주 여러분</h2>
+                <h3>카잡에 등록하여 많은 혜택을 누려보세요</h3>
+                <S.Field>
+                    <S.Title>업체 명</S.Title>
+                    <S.Input type="text" placeholder='사업자 이름' autoFocus ref={storeName} />
+                </S.Field>
+                <S.Field>
+                    <S.Title>업체 연락처</S.Title>
+                    <S.Input type="tel" placeholder='연락처를 입력해주세요' ref={storeTel} />
+                </S.Field>
 
-            <S.Field>
-                <S.Title>업체 설명</S.Title>
-                <S.Input placeholder="업체를 설명해주세요" ref={storeDescription} onChange={storeInfoUpdate} />
-            </S.Field>
-            <S.Field>
-                <S.Title>업체 사진</S.Title>
+                <S.Field>
+                    <S.Title>업체 설명</S.Title>
+                    <S.Input placeholder="업체를 설명해주세요" ref={storeDescription} />
+                </S.Field>
+                <S.Field>
+                    <S.Title>대표 사진</S.Title>
+                    <ImageUpload imageHandler={storeThumbnailImageHandler} />
+                    <S.Title>업체 사진</S.Title>
+                    <ImageUpload imageHandler={storeimageHandler} multiple />
+                </S.Field>
 
-                <ImageUpload storeimageHandler={storeimageHandler} />
-            </S.Field>
-
-            <S.Field>
-                <S.Title>업체 주소</S.Title>
-                <S.Input type="text" placeholder='우편번호' value={storeInfo.zonecode} />
-                <button onClick={addressFinder}>주소찾기</button>
-                {isZipCode && <DaumPostCode storeAddressHandler={storeAddressHandler} />}
-                <div>
+                <S.Field>
+                    <S.Title>업체 주소</S.Title>
+                    <S.Input type="text" placeholder='우편번호' value={addressInfo.zonecode} ref={storeZoneCode} />
+                    <button onClick={addressFinder}>주소찾기</button>
+                    {isZipCode && <DaumPostCode storeAddressHandler={storeAddressHandler} />}
                     <div>
-                        <S.Input type="text" placeholder='주소' value={storeInfo.address} />
+                        <div>
+                            <S.Input type="text" placeholder='주소' value={addressInfo.address} ref={storeAddress} />
+                        </div>
+                        <div>
+                            <S.Input type="text" placeholder='상세주소' ref={storeDetailAddress} />
+                        </div>
                     </div>
-                    <div>
-                        <S.Input type="text" placeholder='상세주소' ref={storeDetailAddress} onChange={storeInfoUpdate} />
-                    </div>
-                </div>
-            </S.Field>
+                </S.Field>
 
-            <S.Field>
-                <div></div>
-                <SkillTag storeSkillHandler={storeSkillHandler} />
-            </S.Field>
+                <S.Field>
+                    <div></div>
+                    <SkillTag storeSkillHandler={storeSkillHandler} />
+                </S.Field>
 
 
-            <S.Field>
-                <button type='submit' onClick={submitHandler}>업체로 등록하기</button>
+                <S.Field>
+                    <button type='submit' onClick={submitHandler}>업체로 등록하기</button>
 
-            </S.Field>
-            <button onClick={goToHome}>돌아가기</button>
-        </S.Container >
+                </S.Field>
+                <button onClick={goToHome}>돌아가기</button>
+            </S.Container >
+        </>
     );
 };
 

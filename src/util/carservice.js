@@ -18,3 +18,19 @@ export const carService = [
     '라이트복원',
     '렌트카'
 ];
+
+
+export const carServiceENG = [
+    'tinting',
+    'wraping',
+    'ppf',
+    'carwash',
+    'gloss',
+    'detail-carwash',
+    'car-repair',
+    'painting',
+    'autoglass',
+    'tire',
+
+]
+

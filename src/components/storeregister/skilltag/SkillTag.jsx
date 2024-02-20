@@ -8,9 +8,9 @@ const SkillTag = ({ storeSkillHandler }) => {
     useEffect(() => {
         storeSkillHandler(selectedSkillList)
     }, [selectedSkillList])
+
     const seletedSkillHandler = (skill) => {
         const isSkillSelected = selectedSkillList.includes(skill)
-        console.log(isSkillSelected)
         if (isSkillSelected) {
             setSelectedSkillList(prevSkill =>
                 prevSkill.filter((selectedSkill) => selectedSkill !== skill)
