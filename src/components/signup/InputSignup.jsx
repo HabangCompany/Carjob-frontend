@@ -28,14 +28,12 @@ const InputSignup = () => {
     const [wrongId, setWrongId] = useState({
         "id": false,
         "nickname": false,
-        "adress": false,
         "callnumber": false,
         "password": false,
     })
     // 회원가입정보 ref
     const idRef = useRef('')
     const nicknameRef = useRef('')
-    const addressRef = useRef('')
     const phonenumberRef = useRef('')
     const passwordRef = useRef('')
     const password2dRef = useRef('')
@@ -136,10 +134,9 @@ const InputSignup = () => {
         }
         const username = idRef.current.value
         const nickname = nicknameRef.current.value
-        const address = addressRef.current.value
         const phonenumber = phonenumberRef.current.value
         const password = passwordRef.current.value
-        if (username == '' || nickname == '' || address == '' || phonenumber == '' || password == '') {
+        if (username == '' || nickname == '' || phonenumber == '' || password == '') {
             setSignUpModal(prev => !prev)
             setSignUpMessage("회원가입 양식을 확인해주세요")
             return
@@ -148,7 +145,6 @@ const InputSignup = () => {
         let signupForm = {
             'username': username,
             'nickname': nickname,
-            'address': address,
             'phonenumber': phonenumber,
             'password': password
         }
@@ -164,6 +160,7 @@ const InputSignup = () => {
                     password: false,
                 }))
                 setSignUpMessage("회원가입이 성공적으로 되었습니다")
+                navigate('/login')
 
 
             })
@@ -201,12 +198,7 @@ const InputSignup = () => {
                         {wrongId['nickname'] && <S.Wrongtext>닉네임이 잘못됫어요 !!</S.Wrongtext>}
                     </S.InputBox >
                 </S.InputDiv>
-                <S.InputDiv>
-                    <S.Label><S.Important>*</S.Important>상세 주소</S.Label>
-                    <S.InputBox>
-                        <S.Input ref={addressRef} type='text' placeholder='시공받을 주소입니다.' />
-                    </S.InputBox>
-                </S.InputDiv>
+
                 <S.InputDiv>
                     <S.Label><S.Important>*</S.Important>연락처</S.Label>
                     <S.InputBox>

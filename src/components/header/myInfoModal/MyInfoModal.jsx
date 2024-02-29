@@ -4,6 +4,7 @@ import { useRecoilState, } from 'recoil';
 import { MyInfoModalState } from '../../../atom/globalstate';
 import closeIcon from '@/assets/close.svg'
 import profilImage from '@/assets/logo.jpg'
+import { Link } from 'react-router-dom';
 
 
 const category = [
@@ -42,7 +43,11 @@ const MyInfoModal = () => {
                     )
                 })
                 }
-                <S.Category>업체로 등록하기</S.Category>
+                <S.Category>
+                    <Link to='/store-register'>
+                        업체로 등록하기
+                    </Link>
+                </S.Category>
             </S.Container>
         </S.BackGround >
     );

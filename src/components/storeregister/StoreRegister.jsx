@@ -5,6 +5,7 @@ import SkillTag from './skilltag/SkillTag';
 import * as S from './StoreRegister.style'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { getCookie } from '../../util/cookie';
 
 const StoreRegister = () => {
     const [isZipCode, setIsZipCode] = useState(false)
@@ -70,14 +71,20 @@ const StoreRegister = () => {
 
         const formdata = new FormData()
         formdata.append("data", storeInfo)
+        formdata.append("storeThumbnailImage", storeThumbnailImage[0])
         storeImage.forEach((image, index) => {
             formdata.append("storeImage", image, `storeImage-${index}.jpg`)
         })
+
+
         console.log(Array.from(formdata.entries()));
-        const url = 'http://localhost:8000/account/store_register/'
+        const url = 'http://localhost:8000/account/store_register/ '
+        const token = getCookie('access_token')
+        console.log(token)
         await axios.post(url, formdata, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(res => console.log(res))

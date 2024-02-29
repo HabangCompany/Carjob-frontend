@@ -4,15 +4,6 @@ import FirstTintingService from './FirstTintingService'
 import SecoundTintingService from './SecoundTintingService';
 import ThirdTintingService from './ThirdTintingService';
 
-
-/** 
- * 1. 시공부위
- * 2. 차종
- * 3. 지역
- * 
- */
-
-
 const Tinting = () => {
     const [step, setStep] = useState(1)
 

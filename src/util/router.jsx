@@ -33,13 +33,14 @@ export const RouterInfo = [
             {
                 path: '/car-service/:servicename',
                 element: <CarServiceDetailPage />
-            }
+            },
+            {
+                path: '/store-register',
+                element: <StoreRegisterPage />
+            },
         ]
     },
-    {
-        path: '/store-register',
-        element: <StoreRegisterPage />
-    },
+
     {
         path: '/signup',
         element: <Signup />

@@ -18,7 +18,7 @@ const ImageUpload = ({ imageHandler, multiple = false }) => {
         }
 
         const files = e.target.files;
-        console.log(files)
+
         // 이미지 파일만 필터링
         const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
 
@@ -37,7 +37,6 @@ const ImageUpload = ({ imageHandler, multiple = false }) => {
         inputRef.current.click();
     };
 
-    console.log(selectedImages)
 
     return (
         <>
